@@ -3,7 +3,7 @@ let
   terminal = "kitty";
   graphicalFileManager = "dolphin";
   browser = "firefox";
-  menu = "wofi --show drun";
+  menu = "wofi --gtk-dark --show drun";
   passwordManager = "1password";
 
 in
@@ -25,12 +25,12 @@ in
 			];
 
       exec-once = [
-			  "dus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY"
+			  "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY"
+				"amixer -c 0 sset 'Analog Output' Multichannel" # Alsa mixer settings
+				"sleep 2 && amixer -c 1 set Headphone 100% unmute"
 				"waybar"
         "[workspace 1 silent] ${terminal}"
-				"[workspace 2 silent] ${browser}"
-	      "[workspace special:1password silent] ${passwordManager}"
-				"[workspace special:htop silent] ${terminal} htop"
+				"${passwordManager} &"
       ];
 
       general = {
