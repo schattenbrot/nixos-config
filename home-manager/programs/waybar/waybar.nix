@@ -37,6 +37,7 @@
 							 margin-left: 5px;
 							 margin-right: 5px;
 							 margin-top: 5px;
+							 border-radius: 10px;
 							 background-color: rgb(30, 30, 46);
 						 }
 			 #workspaces {
@@ -203,7 +204,7 @@
 			};
 			"pulseaudio" = {
 				"scroll-step" = 1;
-				"format" = "{icon} {volume}%";
+				"format" = "{icon}  {volume}%";
 				"format-muted" = "󰖁 Muted";
 				"format-icons" = {
 					"default" = [ "" "" "" ];

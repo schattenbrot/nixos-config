@@ -9,10 +9,13 @@
     programs/git.nix
     programs/kitty.nix
     programs/neovim/default.nix
+		programs/vscode/default.nix
     services/mako.nix
     services/zoxide.nix
     wm/hyprland.nix
   ];
+
+	services.ssh-agent.enable = true;
 
   home = {
     stateVersion = "25.05";

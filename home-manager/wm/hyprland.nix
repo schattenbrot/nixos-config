@@ -2,7 +2,7 @@
 let
   terminal = "kitty";
   graphicalFileManager = "dolphin";
-  browser = "firefox";
+  browser = "brave";
   menu = "wofi --gtk-dark --show drun";
   passwordManager = "1password";
 
@@ -24,13 +24,19 @@ in
 				"HDMI-A-2, 1920x1080@60.00, 2560x0, 1"
 			];
 
+			windowrulev2 = [
+				"workspace special:spotify silent, class:^(Spotify)$"
+				"workspace special:1password silent, class:^(1Password)$"
+			];
+
       exec-once = [
 			  "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY"
-				"amixer -c 0 sset 'Analog Output' Multichannel" # Alsa mixer settings
-				"sleep 2 && amixer -c 1 set Headphone 100% unmute"
+				"sleep 3 && ${config.home.homeDirectory}/nixos-config/home-manager/scripts/set-audio.sh"
 				"waybar"
+				"spotify"
         "[workspace 1 silent] ${terminal}"
-				"${passwordManager} &"
+				"[workspace 2 silent] ${browser}"
+				"${passwordManager}"
       ];
 
       general = {
@@ -151,8 +157,9 @@ in
 				"$mod SHIFT, K, layoutmsg, swapprev"
 
 				# Move special workspace (scratchpad)
-				"$mod, L, togglespecialworkspace, special:htop"
-				"$mod, Y, togglespecialworkspace, special:1password"
+				"$mod, L, togglespecialworkspace, 1password"
+				"$mod, U, togglespecialworkspace, quickshell"
+				"$mod, Y, togglespecialworkspace, spotify"
 			]
 
 			# Switch/moveto workspaces

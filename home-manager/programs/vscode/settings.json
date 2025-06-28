@@ -1,0 +1,61 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.linkedEditing": true,
+  "update.mode": "none",
+  "workbench.activityBar.location": "top",
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#ffbbff"
+  },
+  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.editor.enablePreview": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "vim.useSystemClipboard": true,
+
+  "prettier.arrowParens": "always",
+  "prettier.jsxSingleQuote": false,
+  "prettier.semi": true,
+  "prettier.singleAttributePerLine": false,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.bracketSameLine": true,
+  "prettier.bracketSpacing": true,
+  "prettier.useTabs": false,
+
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[html]": {
+    "editor.tabSize": 2,
+    "prettier.printWidth": 120
+  },
+  "[json]": {
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 2,
+    "prettier.useTabs": false
+  },
+  "vim.handleKeys": {
+    "<C-p>": false,
+    "<C-d>": true,
+    "<C-s>": false,
+    "<C-z>": false
+  },
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "window.zoomLevel": 2,
+  "editor.tabSize": 2,
+  "chat.commandCenter.enabled": false,
+  "editor.useTabStops": false,
+  "go.toolsManagement.autoUpdate": true
+}
