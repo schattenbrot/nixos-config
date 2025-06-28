@@ -26,7 +26,7 @@ in
 
 			windowrulev2 = [
 				"workspace special:spotify silent, class:^(Spotify)$"
-				"workspace special:1password silent, class:^(1Password)$"
+				"workspace special:1password silent, class:^(1Password)$  title:^(?!Quick Access).*"
 			];
 
       exec-once = [
