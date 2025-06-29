@@ -24,9 +24,14 @@ in
 				"HDMI-A-2, 1920x1080@60.00, 2560x0, 1"
 			];
 
+			env = [
+        "XCURSOR_THEME,capitaine-cursors"
+        "XCURSOR_SIZE,32"
+      ];
+
 			windowrulev2 = [
 				"workspace special:spotify silent, class:^(Spotify)$"
-				"workspace special:1password silent, class:^(1Password)$  title:^(?!Quick Access).*"
+				"workspace special:1password silent, class:^(1Password)$ title:^(?!.*Quick Access).*$"
 			];
 
       exec-once = [

@@ -20,6 +20,14 @@
   home = {
     stateVersion = "25.05";
 
+    pointerCursor = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+      size = 32;
+      gtk.enable = true;
+      x11.enable = true;
+    };
+
     packages = with pkgs; [
       # File Managers
       ranger

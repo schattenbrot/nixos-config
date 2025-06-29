@@ -19,5 +19,3 @@ sudo nix-channel --update
 
 - Flake it
 - Better theme for SDDM
-- fix waybar (it's horrible D:)
-- shitty cursor ... get a better one D:
