@@ -33,6 +33,11 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
+	# Bluetooth
+	hardware.bluetooth.enable = true;
+	services.blueman.enable = true;
+	hardware.xone.enable = true;
+
   # Enable Display Manager
   services.xserver.enable = true;
   services.displayManager.sddm = {

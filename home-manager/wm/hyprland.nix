@@ -32,6 +32,7 @@ in
 			windowrulev2 = [
 				"workspace special:spotify silent, class:^(Spotify)$"
 				"workspace special:1password silent, class:^(1Password)$ title:^(?!.*Quick Access).*$"
+				"workspace 9 silent, class:^(discord)$"
 			];
 
       exec-once = [
@@ -39,6 +40,8 @@ in
 				"sleep 3 && ${config.home.homeDirectory}/nixos-config/home-manager/scripts/set-audio.sh"
 				"waybar"
 				"spotify"
+				"discord"
+				"blueman-applet"
         "[workspace 1 silent] ${terminal}"
 				"[workspace 2 silent] ${browser}"
 				"${passwordManager}"
