@@ -25,8 +25,8 @@
       set fish_greeting
       setenv EDITOR vim
       setenv VISUAL vim
-      eval (ssh-agent -c)
-      ssh-add ~/.ssh/github_ed25519
+      eval (ssh-agent -c 2>/dev/null | grep -v '^echo')
+      ssh-add ~/.ssh/github_ed25519 > /dev/null 2>&1
     '';
 
     plugins = [

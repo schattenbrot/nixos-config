@@ -15,8 +15,6 @@
     wm/hyprland.nix
   ];
 
-	services.ssh-agent.enable = true;
-
   home = {
     stateVersion = "25.05";
 
