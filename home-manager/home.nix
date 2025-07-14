@@ -55,6 +55,11 @@
       # Audio
       pavucontrol
       alsa-utils
+
+      # Gaming
+      lutris
+      wine
+      winetricks
     ];
   };
 }

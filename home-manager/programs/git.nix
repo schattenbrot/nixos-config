@@ -10,6 +10,7 @@
 			"*.sql"
 			"*.sql.gz"
 			"*.sql.zst"
+			".envrc"
 			".direnv/"
 			".venv/"
 			"node_modules"

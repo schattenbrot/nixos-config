@@ -12,6 +12,8 @@
       <home-manager/nixos>
 
       ./fonts.nix
+			
+			./audio.nix
     ];
 
   # Bootloader.
@@ -30,8 +32,12 @@
   # Hardware
   powerManagement.cpuFreqGovernor = "performance";
   boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
+  hardware.graphics.extraPackages = with pkgs; [
+    rocmPackages.clr
+  ];
 
 	# Bluetooth
 	hardware.bluetooth.enable = true;
@@ -79,7 +85,7 @@
   users.users.ellychan = {
     isNormalUser = true;
     description = "Ellychan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };
@@ -104,8 +110,7 @@
     neovim
     mako
     grc
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    protonup-qt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -129,8 +134,15 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Virtualisation
+  virtualisation.docker = {
+    enable = true;
+    logDriver = "json-file";
+  };
+  users.extraGroups.docker.members = [ "ellychan" ];
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 8080 8081 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
