@@ -49,7 +49,8 @@
     "<C-p>": false,
     "<C-d>": true,
     "<C-s>": false,
-    "<C-z>": false
+    "<C-z>": false,
+    "<C-i>": false
   },
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -57,5 +58,13 @@
   "editor.tabSize": 2,
   "chat.commandCenter.enabled": false,
   "editor.useTabStops": false,
-  "go.toolsManagement.autoUpdate": true
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  }
 }
