@@ -60,6 +60,8 @@
       lutris
       wine
       winetricks
+
+      snixembed
     ];
   };
 }
