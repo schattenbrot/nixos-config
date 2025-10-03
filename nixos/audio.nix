@@ -9,13 +9,6 @@
 		wireplumber.enable = true;
 		jack.enable = true;
 
-		# extraConfig.pipewire."pipewire.conf".context.properties = {
-		# 	"default.clock.rate" = 48000;
-		# 	"default.clock.quantum" = 1024;
-		# 	"default.clock.min-quantum" = 1024;
-		# 	"default.clock.max-quantum" = 1024;
-		# };
-
 		# drop-in file “/etc/pipewire/pipewire.conf.d/30-rtkit.conf”
 		extraConfig.pipewire."30-rtkit.conf" = {
 			# this corresponds to the `context.modules` list in pipewire.conf
@@ -36,4 +29,19 @@
 
 	# Enable RTKit
 	security.rtkit.enable = true;
+
+	boot.extraModprobeConfig = ''
+    options snd-hda-intel model=auto
+	'';
+	boot.blacklistedKernelModules = [
+  "snd_soc_avs"
+  "snd_soc_hda_codec"
+  "snd_soc_core"
+  "snd_intel_dspcfg" # optional, only if it keeps binding DSP
+  "snd_sof_pci"
+  "snd_sof_intel_hda_common"
+  "snd_sof_intel_bdw"
+  "snd_sof_intel_hda"
+  "snd_sof"
+];
 }
