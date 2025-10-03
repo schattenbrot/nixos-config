@@ -147,7 +147,6 @@
 				"custom/launcher"
 				"hyprland/workspaces"
 				"temperature"
-				#"idle_inhibitor"
 				"custom/wall"
 				"mpd"
 				"custom/cava-internal"
@@ -184,8 +183,6 @@
 			"hyprland/workspaces" = {
 				"format" = "{icon}";
 				"on-click" = "activate";
-				# "on-scroll-up" = "hyprctl dispatch workspace e+1";
-				# "on-scroll-down" = "hyprctl dispatch workspace e-1";
 			};
 			"idle_inhibitor" = {
 				"format" = "{icon}";
