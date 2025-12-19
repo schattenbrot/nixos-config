@@ -2,7 +2,7 @@
 let
   terminal = "kitty";
   graphicalFileManager = "dolphin";
-  browser = "brave";
+  browser = "firefox";
   menu = "wofi --gtk-dark --show drun";
   passwordManager = "1password";
 
@@ -20,8 +20,8 @@ in
       "$mod" = "SUPER";
 
 			monitor = [
-				"DP-2, 2560x1440@165.00, 0x0, 1"
-				"HDMI-A-2, 1920x1080@60.00, 2560x0, 1"
+				"DP-1, 3840x2160@240.00, 0x0, 1"
+				"DP-2, 2560x1440@165.00, 3840x0, 1"
 			];
 
 			env = [
@@ -42,6 +42,7 @@ in
 				"spotify"
 				"discord"
 				"blueman-applet"
+				"streamcontroller &"
         "[workspace 1 silent] ${terminal}"
 				"[workspace 2 silent] ${browser}"
 				"${passwordManager}"
@@ -166,8 +167,11 @@ in
 
 				# Move special workspace (scratchpad)
 				"$mod, L, togglespecialworkspace, 1password"
+				"$mod SHIFT, L, movetoworkspacesilent, 1password"
 				"$mod, U, togglespecialworkspace, quickshell"
+				"$mod SHIFT, U, movetoworkspacesilent, quickshell"
 				"$mod, Y, togglespecialworkspace, spotify"
+				"$mod SHIFT, Y, movetoworkspacesilent, spotify"
 			]
 
 			# Switch/moveto workspaces
