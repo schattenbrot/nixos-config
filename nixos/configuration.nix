@@ -14,10 +14,17 @@
       ./fonts.nix
 			
 			./audio.nix
+
+			./memory.nix
+
+      ./virt.nix
+
+			#./disks.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+	boot.loader.timeout = 30;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
@@ -85,7 +92,7 @@
   users.users.ellychan = {
     isNormalUser = true;
     description = "Ellychan";
-    extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "audio" "libvirtd" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };
@@ -111,6 +118,8 @@
     mako
     grc
     protonup-qt
+
+		streamcontroller # Streamdeck
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
