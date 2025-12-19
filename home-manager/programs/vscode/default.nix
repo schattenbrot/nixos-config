@@ -7,10 +7,11 @@
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         dbaeumer.vscode-eslint
-        yzhang.markdown-all-in-one
-        golang.go
         esbenp.prettier-vscode
+				github.copilot
+        golang.go
         vscodevim.vim
+        yzhang.markdown-all-in-one
       ];
     };
   };
