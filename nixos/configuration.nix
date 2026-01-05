@@ -30,6 +30,8 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.kernelParams = [ "usbcore.autosuspend=-1" "usbhid.mousepoll=1" ];
+
   networking.hostName = "ellychan"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -119,6 +121,8 @@
     grc
     protonup-qt
 
+    melonDS
+
 		streamcontroller # Streamdeck
   ];
 
@@ -137,6 +141,8 @@
     polkitPolicyOwners = [ "ellychan" ];
   };
   programs.steam.enable = true;
+  services.flatpak.enable = true;
+
 
   # List services that you want to enable:
 

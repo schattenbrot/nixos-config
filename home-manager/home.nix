@@ -18,6 +18,11 @@
   home = {
     stateVersion = "25.05";
 
+    file.".local/bin/pkhex" = {
+      source = ./scripts/pkhex.sh;
+      executable = true;
+    };
+
     pointerCursor = {
       package = pkgs.capitaine-cursors;
       name = "capitaine-cursors";
