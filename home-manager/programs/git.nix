@@ -2,8 +2,20 @@
 	programs.git = {
 		enable = true;
 
-		userName = "Schattenbrot";
-		userEmail = "aaron.machill@gmail.com";
+		settings = {
+			user = {
+				name = "Schattenbrot";
+				email = "aaron.machill@gmail.com";
+			};
+
+			init = {
+				defaultBranch = "mistress";
+			};
+
+			pull = {
+				rebase = "true";
+			};
+		};
 
 		ignores = [
 		  ".vscode"
@@ -15,15 +27,5 @@
 			".venv/"
 			"node_modules"
 		];
-
-		extraConfig = {
-			init = {
-				defaultBranch = "mistress";
-			};
-
-			pull = {
-				rebase = "true";
-			};
-		};
 	};
 }

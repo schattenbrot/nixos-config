@@ -93,7 +93,7 @@ in
 
 				bezier = [
 					"easeOutQuint,0.23,1,0.32,1"
-					"easeInOutCubic,0.65,0.05,0.36,1;"
+					"easeInOutCubic,0.65,0.05,0.36,1"
 					"linear,0,0,1,1"
 					"almostLinear,0.5,0.5,0.75,1.0"
 					"quick,0.15,0,0.1,1"
@@ -190,6 +190,11 @@ in
 				)
 				10)
 			);
+
+			bindm = [
+				"$mod, mouse:272, movewindow"
+				"$mod, mouse:273, resizewindow"
+			];
 		};
 
 		package = null;

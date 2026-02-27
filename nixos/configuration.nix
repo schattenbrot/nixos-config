@@ -27,7 +27,8 @@
 	boot.loader.timeout = 30;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
+  # Use a kernel compatible with out-of-tree gamepad drivers (xpadneo/xone).
+  # `linuxPackages_latest` can jump to versions where these modules lag behind.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelParams = [ "usbcore.autosuspend=-1" "usbhid.mousepoll=1" ];
@@ -50,8 +51,11 @@
 
 	# Bluetooth
 	hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 	services.blueman.enable = true;
 	hardware.xone.enable = true;
+  hardware.xpadneo.enable = true;
+  boot.blacklistedKernelModules = [ "hid_microsoft" ];
 
   # Enable Display Manager
   services.xserver.enable = true;
@@ -124,6 +128,10 @@
     melonDS
 
 		streamcontroller # Streamdeck
+    wowup-cf
+
+    # Development
+    opencode
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -141,6 +149,12 @@
     polkitPolicyOwners = [ "ellychan" ];
   };
   programs.steam.enable = true;
+  programs.steam.package = pkgs.steam.override {
+    extraPackages = pkgs: with pkgs; [
+      freetype
+      fontconfig
+    ];
+  };
   services.flatpak.enable = true;
 
 
@@ -169,5 +183,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

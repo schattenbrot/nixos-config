@@ -3,6 +3,7 @@ set -e
 
 # ---- CONFIG ----
 PKHEX_EXE="$HOME/Games/PKHeX.exe"
+PKHAX_EXE="$HOME/Games/PKHaX.exe"
 # Update these when the upstream version or download link changes.
 PKHEX_ZIP_NAME="PKHeX (25.12.21).zip"
 PKHEX_URL="https://projectpokemon.org/home/files/file/1-pkhex/?do=download&csrfKey=bb277e616ab4e06e383ef1f4d1987306"
@@ -12,6 +13,22 @@ DPI=196
 # ---- ENV ----
 export WINEPREFIX
 export WINEARCH=win64
+
+# ----Check for PKHEX ARGS ----
+usage() {
+  cat >&2 <<'EOF'
+Usage: pkhex.sh [hax]
+
+Options:
+  hax  Launch PKHaX mode.
+EOF
+}
+
+if [ "$#" -gt 1 ] || { [ "$#" -eq 1 ] && [ "$1" != "hax" ]; }; then
+  echo "Warning: invalid argument(s)." >&2
+  usage
+  exit 2
+fi
 
 # ---- DOWNLOAD PKHEX IF MISSING ----
 if [ ! -f "$PKHEX_EXE" ]; then
@@ -48,11 +65,25 @@ if [ ! -f "$PKHEX_EXE" ]; then
   esac
 fi
 
+if [ ! -f "$PKHAX_EXE" ]; then
+  echo "PKHaX.exe not found at $PKHAX_EXE" >&2
+  echo "Creating a copy of PKHeX.exe as PKHaX.exe for homebrew compatibility."
+  cp "$PKHEX_EXE" "$PKHAX_EXE"
+fi
+
 # ---- PREPARE WINEPREFIX ----
 if [ ! -d "$WINEPREFIX" ]; then
   mkdir -p "$WINEPREFIX"
 fi
 
+# ---- SELECT EXE ----
+
+EXE_TO_RUN="$PKHEX_EXE"
+if [[ "$1" == "hax" ]]; then
+  EXE_TO_RUN="$PKHAX_EXE"
+  shift
+fi
+
 # ---- RUN ----
 exec nix-shell -p wineWowPackages.full winetricks --command \
-  "winetricks -q dotnetdesktop9 && wine reg add \"HKCU\\Control Panel\\Desktop\" /v LogPixels /t REG_DWORD /d $DPI /f && wine \"$PKHEX_EXE\""
+  "winetricks -q msaa oleaut32 comctl32 msxml6 dotnetdesktop9 && wine reg add \"HKCU\\Control Panel\\Desktop\" /v LogPixels /t REG_DWORD /d $DPI /f && wine \"$EXE_TO_RUN\""
