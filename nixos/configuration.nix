@@ -130,6 +130,8 @@
 		streamcontroller # Streamdeck
     wowup-cf
 
+    winboat
+
     # Development
     opencode
   ];
@@ -149,12 +151,6 @@
     polkitPolicyOwners = [ "ellychan" ];
   };
   programs.steam.enable = true;
-  programs.steam.package = pkgs.steam.override {
-    extraPackages = pkgs: with pkgs; [
-      freetype
-      fontconfig
-    ];
-  };
   services.flatpak.enable = true;
 
 
