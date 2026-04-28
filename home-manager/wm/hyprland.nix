@@ -33,16 +33,21 @@ in
 				"workspace special:spotify silent, class:^(Spotify)$"
 				"workspace special:1password silent, class:^(1Password)$ title:^(?!.*Quick Access).*$"
 				"workspace 9 silent, class:^(discord)$"
+        "noblur, class:^(awakened-poe-trade)$"
 			];
 
+      layerrule = [
+        "ignorezero, wofi"
+        "ignorealpha 0.5, wofi"
+      ];
+
       exec-once = [
-			  "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY"
+			  "dbus-update-activation-environment --systemd --all"
 				"sleep 3 && ${config.home.homeDirectory}/nixos-config/home-manager/scripts/set-audio.sh"
 				"waybar"
 				"spotify"
 				"discord"
 				"blueman-applet"
-				"streamcontroller &"
         "[workspace 1 silent] ${terminal}"
 				"[workspace 2 silent] ${browser}"
 				"${passwordManager}"
@@ -151,6 +156,7 @@ in
 				"$mod, V, togglefloating"
 				"$mod, D, exec, ${menu}"
 				"$mod, W, exec, ${browser}"
+				"$mod, P, exec, kitty steam"
 				"$mod, space, fullscreen, 0"
 				"$mod SHIFT, S, exec, grim -g \"$(slurp -d)\" - | wl-copy"
 				"SHIFT CTRL, space, exec, 1password --quick-access"
@@ -167,11 +173,11 @@ in
 
 				# Move special workspace (scratchpad)
 				"$mod, L, togglespecialworkspace, 1password"
-				"$mod SHIFT, L, movetoworkspacesilent, 1password"
+				"$mod SHIFT, L, movetoworkspacesilent, special:1password"
 				"$mod, U, togglespecialworkspace, quickshell"
-				"$mod SHIFT, U, movetoworkspacesilent, quickshell"
+				"$mod SHIFT, U, movetoworkspacesilent, special:quickshell"
 				"$mod, Y, togglespecialworkspace, spotify"
-				"$mod SHIFT, Y, movetoworkspacesilent, spotify"
+				"$mod SHIFT, Y, movetoworkspacesilent, special:spotify"
 			]
 
 			# Switch/moveto workspaces

@@ -20,6 +20,8 @@
       ./virt.nix
 
 			#./disks.nix
+
+      ./programs/streamdeck-ui.nix
     ];
 
   # Bootloader.
@@ -59,9 +61,21 @@
 
   # Enable Display Manager
   services.xserver.enable = true;
-  services.displayManager.sddm = {
+  services.greetd = {
     enable = true;
+    settings = {
+      default_session = {
+        user = "greeter";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.hyprland}/bin/Hyprland";
+      };
+    };
   };
+  systemd.tmpfiles.rules = [
+    "d /var/cache/tuigreet 0755 greeter greeter -"
+  ];
+  # services.displayManager.sddm = {
+  #   enable = true;
+  # };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -124,13 +138,13 @@
     mako
     grc
     protonup-qt
+    appimage-run
+    freetype
+    fontconfig
 
     melonDS
 
-		streamcontroller # Streamdeck
     wowup-cf
-
-    winboat
 
     # Development
     opencode
@@ -138,11 +152,6 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
   programs.hyprland.enable = true;
   programs.fish.enable = true;
   programs._1password.enable = true;
@@ -150,14 +159,17 @@
     enable = true;
     polkitPolicyOwners = [ "ellychan" ];
   };
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    extraPackages = with pkgs; [
+      freetype
+      fontconfig
+    ];
+  };
   services.flatpak.enable = true;
 
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Virtualisation
   virtualisation.docker = {

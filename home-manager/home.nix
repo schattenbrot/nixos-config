@@ -10,6 +10,7 @@
     programs/kitty.nix
     programs/neovim/default.nix
 		programs/vscode/default.nix
+    programs/wofi.nix
     services/mako.nix
     services/zoxide.nix
     wm/hyprland.nix
@@ -46,7 +47,6 @@
       spotify
 
       # System
-      wofi
       htop
       direnv
       grc

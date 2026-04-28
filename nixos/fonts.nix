@@ -15,7 +15,7 @@
       enable = true;
       defaultFonts = {
         serif = [ "Roboto Slab" ];
-	monospace = [ "Fira Code" ];
+	      monospace = [ "Fira Code" ];
       };
     };
   };
