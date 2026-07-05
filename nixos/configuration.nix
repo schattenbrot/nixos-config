@@ -144,6 +144,11 @@
 
     melonDS
 
+    wine
+    wine64
+    winetricks
+    bottles
+
     wowup-cf
 
     # Development
@@ -159,6 +164,9 @@
     enable = true;
     polkitPolicyOwners = [ "ellychan" ];
   };
+  programs.gamescope = {
+    enable = true;
+  };
   programs.steam = {
     enable = true;
     extraPackages = with pkgs; [
@@ -166,6 +174,7 @@
       fontconfig
     ];
   };
+  programs.nix-ld.enable = true;
   services.flatpak.enable = true;
 
 

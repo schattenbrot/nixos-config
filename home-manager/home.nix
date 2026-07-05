@@ -63,8 +63,6 @@
 
       # Gaming
       lutris
-      wine
-      winetricks
 
       snixembed
     ];

@@ -8,6 +8,13 @@
     categories = [ "Game" ];
   };
 
+  xdg.desktopEntries.obsidian = {
+    name = "Obsidian";
+    exec = "env XDG_SESSION_TYPE=x11 /run/current-system/sw/bin/appimage-run ${config.home.homeDirectory}/Documents/Obsidian-1.12.7.AppImage";
+    terminal = false;
+    categories = [ "Utility" ];
+  };
+
   programs.wofi = {
     enable = true;
 

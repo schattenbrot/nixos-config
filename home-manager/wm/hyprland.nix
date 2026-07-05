@@ -3,7 +3,7 @@ let
   terminal = "kitty";
   graphicalFileManager = "dolphin";
   browser = "firefox";
-  menu = "wofi --gtk-dark --show drun";
+  menu = "env DRI_PRIME=1! wofi --gtk-dark --show drun";
   passwordManager = "1password";
 
 in
@@ -29,17 +29,26 @@ in
         "XCURSOR_SIZE,32"
       ];
 
-			windowrulev2 = [
-				"workspace special:spotify silent, class:^(Spotify)$"
-				"workspace special:1password silent, class:^(1Password)$ title:^(?!.*Quick Access).*$"
-				"workspace 9 silent, class:^(discord)$"
-        "noblur, class:^(awakened-poe-trade)$"
+			windowrule = [
+			  "workspace special:spotify silent, match:class ^(Spotify)$"
+
+			  # 1Password Quick Access: keep it as an overlay, not on the 1Password scratchpad
+				"center on, match:class ^(1password)$, match:float 1"
+				"stay_focused on, match:class ^(1password)$, match:float 1"
+				"focus_on_activate on, match:class ^(1password)$, match:float 1"
+
+			 # Normal 1Password window: send to special workspace
+			  "workspace special:1password silent, match:class ^(1Password)$, match:initial_title negative:.*Quick Access.*"
+
+			  #"workspace special:1password silent, match:class ^(1Password)$, match:title negative:.*Quick Access.*"
+			  "workspace 9 silent, match:class ^(discord)$"
+			  "no_blur on, match:class ^(awakened-poe-trade)$"
 			];
 
-      layerrule = [
-        "ignorezero, wofi"
-        "ignorealpha 0.5, wofi"
-      ];
+			layerrule = [
+			  "blur on, match:namespace wofi"
+			  "ignore_alpha 0.5, match:namespace wofi"
+			];
 
       exec-once = [
 			  "dbus-update-activation-environment --systemd --all"
