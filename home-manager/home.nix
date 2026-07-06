@@ -9,11 +9,13 @@
     programs/git.nix
     programs/kitty.nix
     programs/neovim/default.nix
+    programs/obsidian.nix
 		programs/vscode/default.nix
     programs/wofi.nix
     services/mako.nix
     services/zoxide.nix
     wm/hyprland.nix
+    wm/niri.nix
   ];
 
   home = {
@@ -51,6 +53,7 @@
       direnv
       grc
       hyprpaper
+      awww
       python3
 
       # Screenshot and cature

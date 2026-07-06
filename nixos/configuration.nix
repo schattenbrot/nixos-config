@@ -66,7 +66,9 @@
     settings = {
       default_session = {
         user = "greeter";
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.hyprland}/bin/Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session "
+          + "--sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions "
+          + "--cmd ${pkgs.hyprland}/bin/Hyprland";
       };
     };
   };
@@ -148,6 +150,7 @@
     wine64
     winetricks
     bottles
+    xwayland-satellite
 
     wowup-cf
 
@@ -158,6 +161,7 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.hyprland.enable = true;
+  programs.niri.enable = true;
   programs.fish.enable = true;
   programs._1password.enable = true;
   programs._1password-gui = {
